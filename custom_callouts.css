@@ -1,0 +1,974 @@
+/* ============================================================
+   Custom Callouts for Obsidian
+   Standalone — works without multi_column_layout.css
+   Usage: [!col|slot-1], [!grid|grid-2x2] etc.
+   ============================================================ */
+
+/* --- Base Variables --- */
+body {
+    --col-gap:          1.5em;
+    --col-border-width: 1px;
+    --col-border-color: var(--background-modifier-border);
+    --col-radius:       6px;
+
+    /* Slot 1 */
+    --slot-1-bg:     #ebf8ff;
+    --slot-1-border: #63b3ed;
+    --slot-1-header: #63b3ed;
+    --slot-1-icon:   lucide-layout-list;
+
+    /* Slot 2 */
+    --slot-2-bg:     #f0fff4;
+    --slot-2-border: #68d391;
+    --slot-2-header: #68d391;
+    --slot-2-icon:   lucide-layout-list;
+
+    /* Slot 3 */
+    --slot-3-bg:     #fff5f5;
+    --slot-3-border: #fc8181;
+    --slot-3-header: #fc8181;
+    --slot-3-icon:   lucide-layout-list;
+
+    /* Slot 4 */
+    --slot-4-bg:     #faf5ff;
+    --slot-4-border: #b794f4;
+    --slot-4-header: #b794f4;
+    --slot-4-icon:   lucide-layout-list;
+
+    /* Slot 5 */
+    --slot-5-bg:     #fffaf0;
+    --slot-5-border: #f6ad55;
+    --slot-5-header: #f6ad55;
+    --slot-5-icon:   lucide-layout-list;
+
+    /* Slot 6 */
+    --slot-6-bg:     #fff5f7;
+    --slot-6-border: #f687b3;
+    --slot-6-header: #f687b3;
+    --slot-6-icon:   lucide-layout-list;
+
+    /* Slot 7 */
+    --slot-7-bg:     #e6fffa;
+    --slot-7-border: #4fd1c5;
+    --slot-7-header: #4fd1c5;
+    --slot-7-icon:   lucide-layout-list;
+
+    /* Slot 8 */
+    --slot-8-bg:     #fffff0;
+    --slot-8-border: #f6e05e;
+    --slot-8-header: #b7791f;
+    --slot-8-icon:   lucide-layout-list;
+
+    /* Slot 9 */
+    --slot-9-bg:     #f7fafc;
+    --slot-9-border: #a0aec0;
+    --slot-9-header: #718096;
+    --slot-9-icon:   lucide-layout-list;
+
+    /* Slot 1 */  --slot-1-text:  inherit;
+    /* Slot 2 */  --slot-2-text:  inherit;
+    /* Slot 3 */  --slot-3-text:  inherit;
+    /* Slot 4 */  --slot-4-text:  inherit;
+    /* Slot 5 */  --slot-5-text:  inherit;
+    /* Slot 6 */  --slot-6-text:  inherit;
+    /* Slot 7 */  --slot-7-text:  inherit;
+    /* Slot 8 */  --slot-8-text:  inherit;
+    /* Slot 9 */  --slot-9-text:  inherit;
+
+    /* Slot 10 */
+    --slot-10-bg:     #2d3748;
+    --slot-10-border: #4a5568;
+    --slot-10-header: #e2e8f0;
+    --slot-10-icon:   lucide-layout-list;
+    --slot-10-text:   #e2e8f0;
+}
+
+/* ============================================================
+   [!col] — Single Callout
+   ============================================================ */
+
+div[data-callout="col"].callout {
+    display:        flex;
+    flex-direction: column;
+    border:         var(--col-border-width) solid var(--col-border-color);
+    border-radius:  var(--col-radius);
+    background:     var(--background-secondary);
+    padding:        0;
+}
+
+/* --- Title — Inside Card --- */
+div[data-callout="col"].callout > .callout-title {
+    display:        flex;
+    align-items:    center;
+    gap:            0.4em;
+    font-weight:    600;
+    font-size:      0.95em;
+    letter-spacing: 0.02em;
+    padding:        1em 1.5em 0.6em 1.5em;
+    background:     transparent;
+    border-bottom:  none;
+    color:          var(--col-border-color);
+}
+
+/* Show and colour the callout icon */
+div[data-callout="col"].callout > .callout-title .callout-icon {
+    display:     flex;
+    align-items: center;
+    color:       inherit;
+}
+
+/* Hide fold indicator */
+div[data-callout="col"].callout > .callout-title .callout-fold {
+    display: none;
+}
+
+/* --- Content --- */
+div[data-callout="col"].callout > .callout-content {
+    flex-grow: 1;
+    padding:   0.6em 1.5em 1.5em;
+}
+
+/* --- No Title Variant --- */
+div[data-callout="col"][data-callout-metadata*="no-title"].callout > .callout-title {
+    display: none;
+}
+
+/* --- Table Styling Inside [!col] --- */
+div[data-callout="col"].callout .callout-content table {
+    background:    var(--background-primary);
+    border-radius: calc(var(--col-radius) * 0.5);
+    width:         100%;
+}
+div[data-callout="col"].callout .callout-content table th {
+    background: var(--background-secondary-alt);
+}
+div[data-callout="col"].callout .callout-content table td,
+div[data-callout="col"].callout .callout-content table th {
+    border-color: var(--col-border-color);
+}
+
+/* ============================================================
+   Slot Variants — Background, Border & Icon
+   ============================================================ */
+div[data-callout="col"][data-callout-metadata*="slot-1"].callout  { background: var(--slot-1-bg);  border-color: var(--slot-1-border); --callout-icon: var(--slot-1-icon); }
+div[data-callout="col"][data-callout-metadata*="slot-2"].callout  { background: var(--slot-2-bg);  border-color: var(--slot-2-border); --callout-icon: var(--slot-2-icon); }
+div[data-callout="col"][data-callout-metadata*="slot-3"].callout  { background: var(--slot-3-bg);  border-color: var(--slot-3-border); --callout-icon: var(--slot-3-icon); }
+div[data-callout="col"][data-callout-metadata*="slot-4"].callout  { background: var(--slot-4-bg);  border-color: var(--slot-4-border); --callout-icon: var(--slot-4-icon); }
+div[data-callout="col"][data-callout-metadata*="slot-5"].callout  { background: var(--slot-5-bg);  border-color: var(--slot-5-border); --callout-icon: var(--slot-5-icon); }
+div[data-callout="col"][data-callout-metadata*="slot-6"].callout  { background: var(--slot-6-bg);  border-color: var(--slot-6-border); --callout-icon: var(--slot-6-icon); }
+div[data-callout="col"][data-callout-metadata*="slot-7"].callout  { background: var(--slot-7-bg);  border-color: var(--slot-7-border); --callout-icon: var(--slot-7-icon); }
+div[data-callout="col"][data-callout-metadata*="slot-8"].callout  { background: var(--slot-8-bg);  border-color: var(--slot-8-border); --callout-icon: var(--slot-8-icon); }
+div[data-callout="col"][data-callout-metadata*="slot-9"].callout  { background: var(--slot-9-bg);  border-color: var(--slot-9-border); --callout-icon: var(--slot-9-icon); }
+div[data-callout="col"][data-callout-metadata*="slot-10"].callout { background: var(--slot-10-bg); border-color: var(--slot-10-border); --callout-icon: var(--slot-10-icon); }
+
+/* --- Slot Title Colour --- */
+div[data-callout="col"][data-callout-metadata*="slot-1"].callout  > .callout-title { color: var(--slot-1-header);  }
+div[data-callout="col"][data-callout-metadata*="slot-2"].callout  > .callout-title { color: var(--slot-2-header);  }
+div[data-callout="col"][data-callout-metadata*="slot-3"].callout  > .callout-title { color: var(--slot-3-header);  }
+div[data-callout="col"][data-callout-metadata*="slot-4"].callout  > .callout-title { color: var(--slot-4-header);  }
+div[data-callout="col"][data-callout-metadata*="slot-5"].callout  > .callout-title { color: var(--slot-5-header);  }
+div[data-callout="col"][data-callout-metadata*="slot-6"].callout  > .callout-title { color: var(--slot-6-header);  }
+div[data-callout="col"][data-callout-metadata*="slot-7"].callout  > .callout-title { color: var(--slot-7-header);  }
+div[data-callout="col"][data-callout-metadata*="slot-8"].callout  > .callout-title { color: var(--slot-8-header);  }
+div[data-callout="col"][data-callout-metadata*="slot-9"].callout  > .callout-title { color: var(--slot-9-header);  }
+div[data-callout="col"][data-callout-metadata*="slot-10"].callout > .callout-title { color: var(--slot-10-header); }
+
+/* --- Slot Content Text Colour --- */
+div[data-callout="col"][data-callout-metadata*="slot-1"].callout  .callout-content { color: var(--slot-1-text);  }
+div[data-callout="col"][data-callout-metadata*="slot-2"].callout  .callout-content { color: var(--slot-2-text);  }
+div[data-callout="col"][data-callout-metadata*="slot-3"].callout  .callout-content { color: var(--slot-3-text);  }
+div[data-callout="col"][data-callout-metadata*="slot-4"].callout  .callout-content { color: var(--slot-4-text);  }
+div[data-callout="col"][data-callout-metadata*="slot-5"].callout  .callout-content { color: var(--slot-5-text);  }
+div[data-callout="col"][data-callout-metadata*="slot-6"].callout  .callout-content { color: var(--slot-6-text);  }
+div[data-callout="col"][data-callout-metadata*="slot-7"].callout  .callout-content { color: var(--slot-7-text);  }
+div[data-callout="col"][data-callout-metadata*="slot-8"].callout  .callout-content { color: var(--slot-8-text);  }
+div[data-callout="col"][data-callout-metadata*="slot-9"].callout  .callout-content { color: var(--slot-9-text);  }
+div[data-callout="col"][data-callout-metadata*="slot-10"].callout .callout-content { color: var(--slot-10-text); }
+
+/* ============================================================
+   Global Toggles (via Style Settings class-toggle)
+   ============================================================ */
+
+/* Transparent backgrounds */
+body.slot-1-transparent  div[data-callout="col"][data-callout-metadata*="slot-1"].callout  { background: transparent; }
+body.slot-2-transparent  div[data-callout="col"][data-callout-metadata*="slot-2"].callout  { background: transparent; }
+body.slot-3-transparent  div[data-callout="col"][data-callout-metadata*="slot-3"].callout  { background: transparent; }
+body.slot-4-transparent  div[data-callout="col"][data-callout-metadata*="slot-4"].callout  { background: transparent; }
+body.slot-5-transparent  div[data-callout="col"][data-callout-metadata*="slot-5"].callout  { background: transparent; }
+body.slot-6-transparent  div[data-callout="col"][data-callout-metadata*="slot-6"].callout  { background: transparent; }
+body.slot-7-transparent  div[data-callout="col"][data-callout-metadata*="slot-7"].callout  { background: transparent; }
+body.slot-8-transparent  div[data-callout="col"][data-callout-metadata*="slot-8"].callout  { background: transparent; }
+body.slot-9-transparent  div[data-callout="col"][data-callout-metadata*="slot-9"].callout  { background: transparent; }
+body.slot-10-transparent div[data-callout="col"][data-callout-metadata*="slot-10"].callout { background: transparent; }
+
+/* Hide borders */
+body.slot-1-no-border  div[data-callout="col"][data-callout-metadata*="slot-1"].callout  { border-color: transparent; }
+body.slot-2-no-border  div[data-callout="col"][data-callout-metadata*="slot-2"].callout  { border-color: transparent; }
+body.slot-3-no-border  div[data-callout="col"][data-callout-metadata*="slot-3"].callout  { border-color: transparent; }
+body.slot-4-no-border  div[data-callout="col"][data-callout-metadata*="slot-4"].callout  { border-color: transparent; }
+body.slot-5-no-border  div[data-callout="col"][data-callout-metadata*="slot-5"].callout  { border-color: transparent; }
+body.slot-6-no-border  div[data-callout="col"][data-callout-metadata*="slot-6"].callout  { border-color: transparent; }
+body.slot-7-no-border  div[data-callout="col"][data-callout-metadata*="slot-7"].callout  { border-color: transparent; }
+body.slot-8-no-border  div[data-callout="col"][data-callout-metadata*="slot-8"].callout  { border-color: transparent; }
+body.slot-9-no-border  div[data-callout="col"][data-callout-metadata*="slot-9"].callout  { border-color: transparent; }
+body.slot-10-no-border div[data-callout="col"][data-callout-metadata*="slot-10"].callout { border-color: transparent; }
+
+/* ============================================================
+   Grid Layout System
+   Usage: [!grid|grid-2x2], [!grid|grid-featured-ll] etc.
+   Spanning: add "span" to inner [!col] metadata
+   ============================================================ */
+
+div[data-callout="grid"].callout {
+    display:    grid;
+    gap:        var(--col-gap);
+    background: unset;
+    border:     unset;
+    margin:     unset;
+    padding:    unset;
+}
+
+div[data-callout="grid"].callout > .callout-title   { display: none; }
+div[data-callout="grid"].callout > .callout-content {
+    display: grid;
+    gap:     var(--col-gap);
+    width:   100%;
+}
+
+/* --- Grid Layout Patterns --- */
+div[data-callout="grid"][data-callout-metadata*="grid-2x2"].callout > .callout-content {
+    grid-template-columns: 1fr 1fr;
+    grid-template-rows:    auto auto;
+}
+div[data-callout="grid"][data-callout-metadata*="grid-2-1"].callout > .callout-content {
+    grid-template-columns: 1fr 1fr;
+    grid-template-rows:    auto auto;
+}
+div[data-callout="grid"][data-callout-metadata*="grid-1-2"].callout > .callout-content {
+    grid-template-columns: 1fr 1fr;
+    grid-template-rows:    auto auto;
+}
+div[data-callout="grid"][data-callout-metadata*="grid-3"].callout > .callout-content {
+    grid-template-columns: 1fr 1fr 1fr;
+    grid-template-rows:    auto;
+}
+div[data-callout="grid"][data-callout-metadata*="grid-4"].callout > .callout-content {
+    grid-template-columns: 1fr 1fr 1fr 1fr;
+    grid-template-rows:    auto;
+}
+div[data-callout="grid"][data-callout-metadata*="grid-featured-ll"].callout > .callout-content {
+    grid-template-columns: 2fr 1fr;
+    grid-template-rows:    auto auto;
+}
+div[data-callout="grid"][data-callout-metadata*="grid-featured-lr"].callout > .callout-content {
+    grid-template-columns: 1fr 2fr;
+    grid-template-rows:    auto auto;
+}
+
+/* --- Spanning Column --- */
+div[data-callout="grid"][data-callout-metadata*="grid-2-1"].callout > .callout-content > div[data-callout-metadata*="span"],
+div[data-callout="grid"][data-callout-metadata*="grid-featured-ll"].callout > .callout-content > div[data-callout-metadata*="span"] {
+    grid-column: 2;
+    grid-row:    1 / span 2;
+}
+div[data-callout="grid"][data-callout-metadata*="grid-1-2"].callout > .callout-content > div[data-callout-metadata*="span"],
+div[data-callout="grid"][data-callout-metadata*="grid-featured-lr"].callout > .callout-content > div[data-callout-metadata*="span"] {
+    grid-column: 1;
+    grid-row:    1 / span 2;
+}
+
+/* --- [!col] fills grid cell properly --- */
+div[data-callout="grid"].callout .callout-content > div[data-callout="col"] {
+    margin: 0;
+    height: 100%;
+}
+
+/* --- Responsive --- */
+@media (max-width: 500px) {
+    div[data-callout="grid"].callout > .callout-content {
+        grid-template-columns: 1fr !important;
+    }
+    div[data-callout="grid"].callout > .callout-content > div[data-callout-metadata*="span"] {
+        grid-column: 1 !important;
+        grid-row:    auto !important;
+    }
+}
+
+/* --- Reading View Fix --- */
+.markdown-reading-view div[data-callout="grid"].callout {
+    display:    grid;
+    gap:        var(--col-gap);
+    background: unset;
+    border:     unset;
+    margin:     unset;
+    padding:    unset;
+}
+.markdown-reading-view div[data-callout="grid"].callout > .callout-title   { display: none; }
+.markdown-reading-view div[data-callout="grid"].callout > .callout-content {
+    display: grid;
+    gap:     var(--col-gap);
+    width:   100%;
+}
+.markdown-reading-view div[data-callout="grid"][data-callout-metadata*="grid-2x2"].callout        > .callout-content { grid-template-columns: 1fr 1fr; }
+.markdown-reading-view div[data-callout="grid"][data-callout-metadata*="grid-2-1"].callout         > .callout-content { grid-template-columns: 1fr 1fr; }
+.markdown-reading-view div[data-callout="grid"][data-callout-metadata*="grid-1-2"].callout         > .callout-content { grid-template-columns: 1fr 1fr; }
+.markdown-reading-view div[data-callout="grid"][data-callout-metadata*="grid-3"].callout           > .callout-content { grid-template-columns: 1fr 1fr 1fr; }
+.markdown-reading-view div[data-callout="grid"][data-callout-metadata*="grid-featured-ll"].callout > .callout-content { grid-template-columns: 2fr 1fr; }
+.markdown-reading-view div[data-callout="grid"][data-callout-metadata*="grid-featured-lr"].callout > .callout-content { grid-template-columns: 1fr 2fr; }
+
+/* @settings
+
+name: Custom Callouts
+id: custom-callouts
+settings:
+    -
+        id: base-title
+        title: Base Styles
+        type: heading
+        level: 1
+        collapsed: false
+    -
+        id: col-gap
+        title: Column & Grid Gap
+        description: Gap between columns and grid cells (e.g. 1.5em, 20px)
+        type: variable-text
+        default: 1.5em
+    -
+        id: col-border-width
+        title: Border Width
+        description: Width of callout borders in pixels
+        type: variable-number-slider
+        default: 1
+        min: 0
+        max: 5
+        step: 1
+        format: px
+    -
+        id: col-radius
+        title: Corner Radius
+        description: Border radius for callouts in pixels
+        type: variable-number-slider
+        default: 6
+        min: 0
+        max: 20
+        step: 1
+        format: px
+    -
+        id: slots-title
+        title: Colour Slots
+        description: "Usage: [!col|slot-1], [!col|slot-2 no-title], [!grid|grid-2x2]"
+        type: heading
+        level: 1
+        collapsed: false
+    -
+        id: slot-1-title
+        title: Slot 1
+        type: heading
+        level: 2
+        collapsed: true
+    -
+        id: slot-1-icon
+        title: Icon
+        description: "Lucide icon name e.g. lucide-star, lucide-briefcase, lucide-bookmark. Browse icons at lucide.dev"
+        type: variable-text
+        default: lucide-layout-list
+        quotes: false
+    -
+        id: slot-1-transparent
+        title: Transparent Background
+        description: "Globally removes the background from all Slot 1 callouts."
+        type: class-toggle
+        default: false
+    -
+        id: slot-1-no-border
+        title: Hide Border
+        description: "Globally hides the border on all Slot 1 callouts."
+        type: class-toggle
+        default: false
+    -
+        id: slot-1-bg
+        title: Background Colour
+        description: "Background colour for Slot 1."
+        type: variable-themed-color
+        format: hex
+        opacity: false
+        default-light: '#'
+        default-dark: '#'
+    -
+        id: slot-1-border
+        title: Border Colour
+        description: "Border colour for Slot 1."
+        type: variable-themed-color
+        format: hex
+        opacity: false
+        default-light: '#'
+        default-dark: '#'
+    -
+        id: slot-1-header
+        title: Title & Icon Colour
+        description: "Colour applied to the title text, icon, and extending line for Slot 1."
+        type: variable-themed-color
+        format: hex
+        opacity: false
+        default-light: '#'
+        default-dark: '#'
+    -
+        id: slot-1-text
+        title: Body Text Colour
+        description: "Text colour for the content area of Slot 1. Defaults to theme text colour."
+        type: variable-themed-color
+        format: hex
+        opacity: false
+        default-light: '#'
+        default-dark: '#'
+    -
+        id: slot-2-title
+        title: Slot 2
+        type: heading
+        level: 2
+        collapsed: true
+    -
+        id: slot-2-icon
+        title: Icon
+        description: "Lucide icon name e.g. lucide-star, lucide-briefcase, lucide-bookmark. Browse icons at lucide.dev"
+        type: variable-text
+        default: lucide-layout-list
+        quotes: false
+    -
+        id: slot-2-transparent
+        title: Transparent Background
+        description: "Globally removes the background from all Slot 2 callouts."
+        type: class-toggle
+        default: false
+    -
+        id: slot-2-no-border
+        title: Hide Border
+        description: "Globally hides the border on all Slot 2 callouts."
+        type: class-toggle
+        default: false
+    -
+        id: slot-2-bg
+        title: Background Colour
+        description: "Background colour for Slot 2."
+        type: variable-themed-color
+        format: hex
+        opacity: false
+        default-light: '#'
+        default-dark: '#'
+    -
+        id: slot-2-border
+        title: Border Colour
+        description: "Border colour for Slot 2."
+        type: variable-themed-color
+        format: hex
+        opacity: false
+        default-light: '#'
+        default-dark: '#'
+    -
+        id: slot-2-header
+        title: Title & Icon Colour
+        description: "Colour applied to the title text, icon, and extending line for Slot 2."
+        type: variable-themed-color
+        format: hex
+        opacity: false
+        default-light: '#'
+        default-dark: '#'
+    -
+        id: slot-2-text
+        title: Body Text Colour
+        description: "Text colour for the content area of Slot 2. Defaults to theme text colour."
+        type: variable-themed-color
+        format: hex
+        opacity: false
+        default-light: '#'
+        default-dark: '#'
+    -
+        id: slot-3-title
+        title: Slot 3
+        type: heading
+        level: 2
+        collapsed: true
+    -
+        id: slot-3-icon
+        title: Icon
+        description: "Lucide icon name e.g. lucide-star, lucide-briefcase, lucide-bookmark. Browse icons at lucide.dev"
+        type: variable-text
+        default: lucide-layout-list
+        quotes: false
+    -
+        id: slot-3-transparent
+        title: Transparent Background
+        description: "Globally removes the background from all Slot 3 callouts."
+        type: class-toggle
+        default: false
+    -
+        id: slot-3-no-border
+        title: Hide Border
+        description: "Globally hides the border on all Slot 3 callouts."
+        type: class-toggle
+        default: false
+    -
+        id: slot-3-bg
+        title: Background Colour
+        description: "Background colour for Slot 3."
+        type: variable-themed-color
+        format: hex
+        opacity: false
+        default-light: '#'
+        default-dark: '#'
+    -
+        id: slot-3-border
+        title: Border Colour
+        description: "Border colour for Slot 3."
+        type: variable-themed-color
+        format: hex
+        opacity: false
+        default-light: '#'
+        default-dark: '#'
+    -
+        id: slot-3-header
+        title: Title & Icon Colour
+        description: "Colour applied to the title text, icon, and extending line for Slot 3."
+        type: variable-themed-color
+        format: hex
+        opacity: false
+        default-light: '#'
+        default-dark: '#'
+    -
+        id: slot-3-text
+        title: Body Text Colour
+        description: "Text colour for the content area of Slot 3. Defaults to theme text colour."
+        type: variable-themed-color
+        format: hex
+        opacity: false
+        default-light: '#'
+        default-dark: '#'
+    -
+        id: slot-4-title
+        title: Slot 4
+        type: heading
+        level: 2
+        collapsed: true
+    -
+        id: slot-4-icon
+        title: Icon
+        description: "Lucide icon name e.g. lucide-star, lucide-briefcase, lucide-bookmark. Browse icons at lucide.dev"
+        type: variable-text
+        default: lucide-layout-list
+        quotes: false
+    -
+        id: slot-4-transparent
+        title: Transparent Background
+        description: "Globally removes the background from all Slot 4 callouts."
+        type: class-toggle
+        default: false
+    -
+        id: slot-4-no-border
+        title: Hide Border
+        description: "Globally hides the border on all Slot 4 callouts."
+        type: class-toggle
+        default: false
+    -
+        id: slot-4-bg
+        title: Background Colour
+        description: "Background colour for Slot 4."
+        type: variable-themed-color
+        format: hex
+        opacity: false
+        default-light: '#'
+        default-dark: '#'
+    -
+        id: slot-4-border
+        title: Border Colour
+        description: "Border colour for Slot 4."
+        type: variable-themed-color
+        format: hex
+        opacity: false
+        default-light: '#'
+        default-dark: '#'
+    -
+        id: slot-4-header
+        title: Title & Icon Colour
+        description: "Colour applied to the title text, icon, and extending line for Slot 4."
+        type: variable-themed-color
+        format: hex
+        opacity: false
+        default-light: '#'
+        default-dark: '#'
+    -
+        id: slot-4-text
+        title: Body Text Colour
+        description: "Text colour for the content area of Slot 4. Defaults to theme text colour."
+        type: variable-themed-color
+        format: hex
+        opacity: false
+        default-light: '#'
+        default-dark: '#'
+    -
+        id: slot-5-title
+        title: Slot 5
+        type: heading
+        level: 2
+        collapsed: true
+    -
+        id: slot-5-icon
+        title: Icon
+        description: "Lucide icon name e.g. lucide-star, lucide-briefcase, lucide-bookmark. Browse icons at lucide.dev"
+        type: variable-text
+        default: lucide-layout-list
+        quotes: false
+    -
+        id: slot-5-transparent
+        title: Transparent Background
+        description: "Globally removes the background from all Slot 5 callouts."
+        type: class-toggle
+        default: false
+    -
+        id: slot-5-no-border
+        title: Hide Border
+        description: "Globally hides the border on all Slot 5 callouts."
+        type: class-toggle
+        default: false
+    -
+        id: slot-5-bg
+        title: Background Colour
+        description: "Background colour for Slot 5."
+        type: variable-themed-color
+        format: hex
+        opacity: false
+        default-light: '#'
+        default-dark: '#'
+    -
+        id: slot-5-border
+        title: Border Colour
+        description: "Border colour for Slot 5."
+        type: variable-themed-color
+        format: hex
+        opacity: false
+        default-light: '#'
+        default-dark: '#'
+    -
+        id: slot-5-header
+        title: Title & Icon Colour
+        description: "Colour applied to the title text, icon, and extending line for Slot 5."
+        type: variable-themed-color
+        format: hex
+        opacity: false
+        default-light: '#'
+        default-dark: '#'
+    -
+        id: slot-5-text
+        title: Body Text Colour
+        description: "Text colour for the content area of Slot 5. Defaults to theme text colour."
+        type: variable-themed-color
+        format: hex
+        opacity: false
+        default-light: '#'
+        default-dark: '#'
+    -
+        id: slot-6-title
+        title: Slot 6
+        type: heading
+        level: 2
+        collapsed: true
+    -
+        id: slot-6-icon
+        title: Icon
+        description: "Lucide icon name e.g. lucide-star, lucide-briefcase, lucide-bookmark. Browse icons at lucide.dev"
+        type: variable-text
+        default: lucide-layout-list
+        quotes: false
+    -
+        id: slot-6-transparent
+        title: Transparent Background
+        description: "Globally removes the background from all Slot 6 callouts."
+        type: class-toggle
+        default: false
+    -
+        id: slot-6-no-border
+        title: Hide Border
+        description: "Globally hides the border on all Slot 6 callouts."
+        type: class-toggle
+        default: false
+    -
+        id: slot-6-bg
+        title: Background Colour
+        description: "Background colour for Slot 6."
+        type: variable-themed-color
+        format: hex
+        opacity: false
+        default-light: '#'
+        default-dark: '#'
+    -
+        id: slot-6-border
+        title: Border Colour
+        description: "Border colour for Slot 6."
+        type: variable-themed-color
+        format: hex
+        opacity: false
+        default-light: '#'
+        default-dark: '#'
+    -
+        id: slot-6-header
+        title: Title & Icon Colour
+        description: "Colour applied to the title text, icon, and extending line for Slot 6."
+        type: variable-themed-color
+        format: hex
+        opacity: false
+        default-light: '#'
+        default-dark: '#'
+    -
+        id: slot-6-text
+        title: Body Text Colour
+        description: "Text colour for the content area of Slot 6. Defaults to theme text colour."
+        type: variable-themed-color
+        format: hex
+        opacity: false
+        default-light: '#'
+        default-dark: '#'
+    -
+        id: slot-7-title
+        title: Slot 7
+        type: heading
+        level: 2
+        collapsed: true
+    -
+        id: slot-7-icon
+        title: Icon
+        description: "Lucide icon name e.g. lucide-star, lucide-briefcase, lucide-bookmark. Browse icons at lucide.dev"
+        type: variable-text
+        default: lucide-layout-list
+        quotes: false
+    -
+        id: slot-7-transparent
+        title: Transparent Background
+        description: "Globally removes the background from all Slot 7 callouts."
+        type: class-toggle
+        default: false
+    -
+        id: slot-7-no-border
+        title: Hide Border
+        description: "Globally hides the border on all Slot 7 callouts."
+        type: class-toggle
+        default: false
+    -
+        id: slot-7-bg
+        title: Background Colour
+        description: "Background colour for Slot 7."
+        type: variable-themed-color
+        format: hex
+        opacity: false
+        default-light: '#'
+        default-dark: '#'
+    -
+        id: slot-7-border
+        title: Border Colour
+        description: "Border colour for Slot 7."
+        type: variable-themed-color
+        format: hex
+        opacity: false
+        default-light: '#'
+        default-dark: '#'
+    -
+        id: slot-7-header
+        title: Title & Icon Colour
+        description: "Colour applied to the title text, icon, and extending line for Slot 7."
+        type: variable-themed-color
+        format: hex
+        opacity: false
+        default-light: '#'
+        default-dark: '#'
+    -
+        id: slot-7-text
+        title: Body Text Colour
+        description: "Text colour for the content area of Slot 7. Defaults to theme text colour."
+        type: variable-themed-color
+        format: hex
+        opacity: false
+        default-light: '#'
+        default-dark: '#'
+    -
+        id: slot-8-title
+        title: Slot 8
+        type: heading
+        level: 2
+        collapsed: true
+    -
+        id: slot-8-icon
+        title: Icon
+        description: "Lucide icon name e.g. lucide-star, lucide-briefcase, lucide-bookmark. Browse icons at lucide.dev"
+        type: variable-text
+        default: lucide-layout-list
+        quotes: false
+    -
+        id: slot-8-transparent
+        title: Transparent Background
+        description: "Globally removes the background from all Slot 8 callouts."
+        type: class-toggle
+        default: false
+    -
+        id: slot-8-no-border
+        title: Hide Border
+        description: "Globally hides the border on all Slot 8 callouts."
+        type: class-toggle
+        default: false
+    -
+        id: slot-8-bg
+        title: Background Colour
+        description: "Background colour for Slot 8."
+        type: variable-themed-color
+        format: hex
+        opacity: false
+        default-light: '#'
+        default-dark: '#'
+    -
+        id: slot-8-border
+        title: Border Colour
+        description: "Border colour for Slot 8."
+        type: variable-themed-color
+        format: hex
+        opacity: false
+        default-light: '#'
+        default-dark: '#'
+    -
+        id: slot-8-header
+        title: Title & Icon Colour
+        description: "Colour applied to the title text, icon, and extending line for Slot 8."
+        type: variable-themed-color
+        format: hex
+        opacity: false
+        default-light: '#'
+        default-dark: '#'
+    -
+        id: slot-8-text
+        title: Body Text Colour
+        description: "Text colour for the content area of Slot 8. Defaults to theme text colour."
+        type: variable-themed-color
+        format: hex
+        opacity: false
+        default-light: '#'
+        default-dark: '#'
+    -
+        id: slot-9-title
+        title: Slot 9
+        type: heading
+        level: 2
+        collapsed: true
+    -
+        id: slot-9-icon
+        title: Icon
+        description: "Lucide icon name e.g. lucide-star, lucide-briefcase, lucide-bookmark. Browse icons at lucide.dev"
+        type: variable-text
+        default: lucide-layout-list
+        quotes: false
+    -
+        id: slot-9-transparent
+        title: Transparent Background
+        description: "Globally removes the background from all Slot 9 callouts."
+        type: class-toggle
+        default: false
+    -
+        id: slot-9-no-border
+        title: Hide Border
+        description: "Globally hides the border on all Slot 9 callouts."
+        type: class-toggle
+        default: false
+    -
+        id: slot-9-bg
+        title: Background Colour
+        description: "Background colour for Slot 9."
+        type: variable-themed-color
+        format: hex
+        opacity: false
+        default-light: '#'
+        default-dark: '#'
+    -
+        id: slot-9-border
+        title: Border Colour
+        description: "Border colour for Slot 9."
+        type: variable-themed-color
+        format: hex
+        opacity: false
+        default-light: '#'
+        default-dark: '#'
+    -
+        id: slot-9-header
+        title: Title & Icon Colour
+        description: "Colour applied to the title text, icon, and extending line for Slot 9."
+        type: variable-themed-color
+        format: hex
+        opacity: false
+        default-light: '#'
+        default-dark: '#'
+    -
+        id: slot-9-text
+        title: Body Text Colour
+        description: "Text colour for the content area of Slot 9. Defaults to theme text colour."
+        type: variable-themed-color
+        format: hex
+        opacity: false
+        default-light: '#'
+        default-dark: '#'
+    -
+        id: slot-10-title
+        title: Slot 10
+        type: heading
+        level: 2
+        collapsed: true
+    -
+        id: slot-10-icon
+        title: Icon
+        description: "Lucide icon name e.g. lucide-star, lucide-briefcase, lucide-bookmark. Browse icons at lucide.dev"
+        type: variable-text
+        default: lucide-layout-list
+        quotes: false
+    -
+        id: slot-10-transparent
+        title: Transparent Background
+        description: "Globally removes the background from all Slot 10 callouts."
+        type: class-toggle
+        default: false
+    -
+        id: slot-10-no-border
+        title: Hide Border
+        description: "Globally hides the border on all Slot 10 callouts."
+        type: class-toggle
+        default: false
+    -
+        id: slot-10-bg
+        title: Background Colour
+        description: "Background colour for Slot 10."
+        type: variable-themed-color
+        format: hex
+        opacity: false
+        default-light: '#'
+        default-dark: '#'
+    -
+        id: slot-10-border
+        title: Border Colour
+        description: "Border colour for Slot 10."
+        type: variable-themed-color
+        format: hex
+        opacity: false
+        default-light: '#'
+        default-dark: '#'
+    -
+        id: slot-10-header
+        title: Title & Icon Colour
+        description: "Colour applied to the title text, icon, and extending line for Slot 10."
+        type: variable-themed-color
+        format: hex
+        opacity: false
+        default-light: '#'
+        default-dark: '#'
+    -
+        id: slot-10-text
+        title: Body Text Colour
+        description: "Text colour for the content area of Slot 10. Defaults to theme text colour."
+        type: variable-themed-color
+        format: hex
+        opacity: false
+        default-light: '#'
+        default-dark: '#'
+
+*/
