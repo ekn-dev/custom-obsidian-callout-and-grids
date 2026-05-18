@@ -33,7 +33,6 @@ No JavaScript. No community plugins required beyond Style Settings. Works standa
 - **Table styling** — tables inside callouts render with correct background contrast
 - **Responsive** — stacks to single column on narrow screens
 - **Light & dark mode** — follows vault theme via CSS variables
-- **Standalone** — works without `multi_column_layout.css`
 
 ---
 
